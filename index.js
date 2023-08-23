@@ -4,7 +4,14 @@ const gameScreen = document.getElementById("game-screen");
 
 let canvas, ctx; 
 
-function init() {
+const gameState = {
+  player:{
+    x: 512, 
+    y: 512
+  }
+}
+
+function init(){
   canvas = document.getElementById('canvas');
   ctx = canvas.getContext('2d');
   canvas.width = canvas.height = 512;
@@ -18,3 +25,13 @@ function keydown(e){
 }
 
 init();
+
+function render(){
+  ctx.fillStyle = BG_COLOR;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  const player = gameState.player;
+
+  ctx.fillStyle = CHAR_COLOR;
+  ctx.fillRect(256, 256);
+}
