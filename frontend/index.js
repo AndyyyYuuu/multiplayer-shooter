@@ -2,6 +2,9 @@ const BG_COLOR = "#051e1f";
 const CHAR_COLOR = "#ebbe54";
 const gameScreen = document.getElementById("game-screen");
 
+const socket = io('http://localhost:3000');
+socket.on('init', handleInit);
+
 let canvas, ctx; 
 
 const gameState = {
@@ -34,4 +37,8 @@ function render(){
 
   ctx.fillStyle = CHAR_COLOR;
   ctx.fillRect(256, 256);
+}
+
+function handleInit(msg){
+  console.log(msg);
 }
