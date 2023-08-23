@@ -4,6 +4,7 @@ const gameScreen = document.getElementById("game-screen");
 
 const socket = io('http://localhost:3000');
 socket.on('init', handleInit);
+socket.on('gamestate', handleGameState);
 
 let canvas, ctx; 
 
@@ -29,7 +30,7 @@ function keydown(e){
 
 init();
 
-function render(){
+function render(gameState){
   ctx.fillStyle = BG_COLOR;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -40,5 +41,10 @@ function render(){
 }
 
 function handleInit(msg){
-  console.log(msg);
+  console.log(msg)
+}
+
+function handleGameState(state){
+  state = JSON.parse(state);
+  requestAnimationFrame(() => render(state));
 }
